@@ -88,9 +88,10 @@ class PledgeDetail(APIView):
             return pledge
         except Pledge.DoesNotExist:
             raise Http404
+        
     def get(self, request, pk):
         project = self.get_object(pk)
-        serializer = PledgeDetailSerializer(project)
+        serializer = PLedgeDetailSerializer(project)
         return Response(serializer.data)
     def put(self, request, pk):
         pledge = self.get_object(pk)
