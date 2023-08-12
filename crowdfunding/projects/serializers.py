@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.apps import apps
 
 class PledgeSerializer(serializers.ModelSerializer):
+    supporter = serializers.ReadOnlyField(source='supporter.id')
     class Meta:
         model = apps.get_model('projects.Pledge')
         fields = '__all__'
@@ -27,9 +28,9 @@ class ProjectDetailSerializer(ProjectSerializer):
         instance.save()
         return instance
     
-    class PledgeDetailSerializer(ProjectSerializer):
+class PledgeDetailSerializer(ProjectSerializer):
         pledges = PledgeSerializer(many=True, read_only=True)
-    
+        
         def update(self, instance, validated_data):
             instance.amount = validated_data.get('amount', instance.amount)
             instance.commment = validated_data.get('comment', instance.comment)

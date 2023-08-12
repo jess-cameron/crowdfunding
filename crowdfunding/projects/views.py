@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Project, Pledge
-from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer
+from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer, PledgeDetailSerializer
 from django.http import Http404
 from rest_framework import status, permissions
 from .permissions import IsOwnerOrReadOnly
@@ -48,6 +48,7 @@ class ProjectDetail(APIView):
     
     def put(self, request, pk):
         project = self.get_object(pk)
+
         serializer = ProjectDetailSerializer(
             instance=project,
             data=request.data,
@@ -66,7 +67,7 @@ class PledgeList(APIView):
     def post(self, request):
         serializer = PledgeSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(supporter=request.user)
             return Response(
             serializer.data,
             status=status.HTTP_201_CREATED
@@ -91,7 +92,7 @@ class PledgeDetail(APIView):
         
     def get(self, request, pk):
         project = self.get_object(pk)
-        serializer = PLedgeDetailSerializer(project)
+        serializer = PledgeDetailSerializer(project)
         return Response(serializer.data)
     def put(self, request, pk):
         pledge = self.get_object(pk)
