@@ -38,7 +38,7 @@ The following features are stretch goals following MVP
 Deployed Project: [Deployed website](https://divine-thunder-6842.fly.dev/projects/)
 ### How To Run
 Open visual studio, directory:
-Runserver from folder that contains manage.py with the following bash command
+Runserver from folder that contains `manage.py` with the following bash command
 ```
 python manage.py runserver
 ```
