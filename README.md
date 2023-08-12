@@ -19,42 +19,68 @@ The following features are stretch goals following MVP
 | HTTP Method | Url | Purpose | Request Body | Successful Response Code | Authentication <br /> Authorization
 | --- | ------- | ------ | ---- | -----| ----|
 | GET | projects/ | Return all projects | N/A | 200 | N/A |
+| GET | pledges/ | Return all pledges | N/A | 200 | N/A
+| GET | users/ | Return all users | N/A | 200 | N/A
 | POST | projects/ | Create a new project | project object | 201 | User must be logged in. 
-| GET | pledges/ | Post a new pledge | pledge detail | N/A
+| POST | pledges/ | Post a new pledge | pledge object | user must be logged in.
 | POST | users/ | New User | user detail | token
-| GET | projects/1/ | N/A | N/A
+| GET | projects/1/ | Display project 1 | N/A | N/A
 
 ## Database Schema
-![](./crowdfunding/images/database.schema.jpg)
+![](./images/database_schema.jpg)
 ## Wireframes
 {{ Insert your wireframes }}
-![image info goes here](./crowdfunding/images/wireframe.jpg)
+![image info goes here](./images/wireframe.jpg)
 ## Colour Scheme
-![Not selected yet]
+![](./images/colours.jpg)
 ## Fonts
-![Not selected yet]
+Not selected yet
 ## Submission Documentation
-{{ Fill this section out for submission }}
 Deployed Project: [Deployed website](https://divine-thunder-6842.fly.dev/projects/)
 ### How To Run
-Open visual studio, directory:
-Runserver from folder that contains `manage.py` with the following bash command
+
+1. Clone a copy of this repo to your machine, by using:
+```
+git clone https://github.com/jess-cameron/crowdfunding.git
+```
+1. Set up a virtual environment
+2. Runserver from folder that contains `manage.py` with the following bash command
 ```
 python manage.py runserver
 ```
 
-### Updated Database Schema
-{{ Updated schema }}
-![image info goes here](./docs/image.png)
-### Updated Wireframes
-{{  Updated wireframes }}
-![image info goes here](./docs/image.png)
 ### How To Register a New User
-{{ Step by step instructions for how to register a new user and create a new project (i.e. endpoints and body data). }}
+1. New User:
+```
+http://localhost:8000/users/
+```
+```
+{
+	"password": [
+		"Some_Password"
+	],
+	"username": [
+		"Some_Username"
+	]
+}
+```
+2. Post Pledge:
+```
+http://localhost:8000/pledges/
+```
+```
+{
+"amount": 234,
+"comment": "Pledge comment",
+"project": 1,
+"anonymous": true
+}
+```
+
 ### Screenshots
-* [] A screenshot of Insomnia, demonstrating a successful GET method for any endpoint.
-![image info goes here](./docs/image.png)
-* [] A screenshot of Insomnia, demonstrating a successful POST method for any endpoint.
-![image info goes here](./docs/image.png)
-* [] A screenshot of Insomnia, demonstrating a token being returned.
-![image info goes here](./docs/image.png)
+* [x] A screenshot of Insomnia, demonstrating a successful GET method for any endpoint 
+* ![](./images/insomnia_GET.jpg)
+* [x] A screenshot of Insomnia, demonstrating a successful POST method for any endpoint.
+![](./images/insomnia_POST.jpg)
+* [x] A screenshot of Insomnia, demonstrating a token being returned.
+![](./images/insomnia_TOKEN.jpg)
