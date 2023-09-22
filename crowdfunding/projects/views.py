@@ -56,6 +56,11 @@ class ProjectDetail(APIView):
         )
         if serializer.is_valid():
             serializer.save()
+
+    def delete(self, request, pk, format=None):
+        project = self.get_object(pk)
+        project.delete()
+        return Response(status=status.HTTP_200_OK)
     
 class PledgeList(APIView):
 
@@ -103,4 +108,9 @@ class PledgeDetail(APIView):
         )
         if serializer.is_valid():
             serializer.save()
+
+    def delete(self, request, pk, format=None):
+        pledge = self.get_object(pk)
+        pledge.delete()
+        return Response(status=status.HTTP_200_OK)
 
